@@ -57,7 +57,7 @@ const NPCS = [
       {
         text: '"당신은 직접 그분의 목소리를 들었습니까?"',
         type: 'positive',
-        response: '"원사람이라 생각했는데... 제 이름을 부르셨어요, \'마리아...\' 라고. 그 순간 눈물이 멈추지 않았습니다."',
+        response: '"처음엔 동산지기인 줄 알았는데... 제 이름을 부르셨어요, \'마리아...\' 라고. 그 순간 눈물이 멈추지 않았습니다."',
         clue: '예수님은 부활하신 분',
         trustChange: 0,
       },
@@ -400,13 +400,14 @@ function handleChoice(choice, npc) {
       document.getElementById('dialogueText'),
       choice.response,
       30,
-      async () => {
-        await sleep(1800);
-        // NPC dismissed - mark and go back
-        state.npcsDismissed.add(npc.id);
-        document.getElementById(`npc-${npc.id}`).classList.add('used');
-        showScene('map');
-        updateNpcCounter();
+      () => {
+        showNextButton(() => {
+          // NPC dismissed - mark and go back
+          state.npcsDismissed.add(npc.id);
+          document.getElementById(`npc-${npc.id}`).classList.add('used');
+          showScene('map');
+          updateNpcCounter();
+        });
       }
     );
   } else {
@@ -415,19 +416,34 @@ function handleChoice(choice, npc) {
       document.getElementById('dialogueText'),
       choice.response,
       30,
-      async () => {
-        await sleep(600);
-        if (choice.clue && !state.cluesCollected.includes(choice.clue)) {
-          state.cluesCollected.push(choice.clue);
-        }
-        showClueReveal(choice.clue);
-        // Mark npc fully visited
-        state.npcsDismissed.add(npc.id);
-        document.getElementById(`npc-${npc.id}`).classList.add('used');
-        document.getElementById(`npc-${npc.id}`).classList.add('selected');
+      () => {
+        showNextButton(() => {
+          if (choice.clue && !state.cluesCollected.includes(choice.clue)) {
+            state.cluesCollected.push(choice.clue);
+          }
+          showClueReveal(choice.clue);
+          // Mark npc fully visited
+          state.npcsDismissed.add(npc.id);
+          document.getElementById(`npc-${npc.id}`).classList.add('used');
+          document.getElementById(`npc-${npc.id}`).classList.add('selected');
+        });
       }
     );
   }
+}
+
+function showNextButton(callback) {
+  const container = document.getElementById('choicesContainer');
+  container.innerHTML = '';
+  const btn = document.createElement('button');
+  btn.className = 'choice-btn';
+  btn.textContent = '다음 ›';
+  btn.style.textAlign = 'center';
+  btn.style.justifyContent = 'center';
+  btn.style.fontWeight = 'bold';
+  btn.style.animation = 'fadeUp 0.4s ease both';
+  btn.addEventListener('click', callback);
+  container.appendChild(btn);
 }
 
 function updateTrustUI() {

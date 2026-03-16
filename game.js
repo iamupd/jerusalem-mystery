@@ -508,10 +508,7 @@ function renderNotebook() {
   }, total * 350 + 900);
 }
 
-document.getElementById('btnToEnding').addEventListener('click', () => {
-  showScene('ending');
-  runEndingSequence();
-});
+// "결론 확인하기" 버튼이 제거되었으므로 해당 이벤트 리스너도 제거합니다.
 
 // ══════════════════════════════════════════════
 // ENDING SEQUENCE

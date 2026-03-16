@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>예루살렘 미스터리 — 빛나는 증언</title>
+  <meta name="description" content="예루살렘의 탐정이 되어 NPC들을 심문하고 단서를 모으세요. 4월 4일 현장에서 진짜 답을 확인하세요." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-wrapper">
+
+    <!-- ═══════════════════ SCENE: INTRO ═══════════════════ -->
+    <div id="scene-intro" class="scene active">
+      <div class="intro-bg">
+        <div class="star-field" id="starField1"></div>
+        <div class="city-silhouette"></div>
+      </div>
+      <div class="intro-content">
+        <div class="scroll-container" id="introScroll">
+          <div class="scroll-top-roll"></div>
+          <div class="scroll-body">
+            <div class="scroll-seal" id="scrollSeal">
+              <span>✦</span>
+            </div>
+            <p class="scroll-label">수사 의뢰서</p>
+            <div class="scroll-text" id="scrollText">
+              <p class="t1">3일 전,</p>
+              <p class="t2">예루살렘에서<br />사건이 일어났다.</p>
+              <p class="t3">목격자들은 말이 없고,<br />진실은 어둠 속에 묻혀있다.</p>
+              <p class="t4">당신만이 밝혀낼 수 있다.</p>
+            </div>
+          </div>
+          <div class="scroll-bottom-roll"></div>
+        </div>
+        <button class="btn-primary pulse" id="btnStart">수사 시작하기 ›</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ SCENE: MAP ═══════════════════ -->
+    <div id="scene-map" class="scene">
+      <div class="map-header">
+        <h2>예루살렘 지도</h2>
+        <p class="map-subtitle">목격자를 선택해 심문하세요 <span id="npcCounter">0/3명 선택됨</span></p>
+      </div>
+      <div class="map-container">
+        <div class="map-bg"></div>
+        <!-- NPC location markers -->
+        <div class="npc-marker" id="npc-0" data-npc="0" style="top:18%;left:50%;">
+          <div class="marker-icon">⚔️</div>
+          <div class="marker-label">마르쿠스<br/><small>로마 병사</small></div>
+          <div class="marker-ping"></div>
+        </div>
+        <div class="npc-marker" id="npc-1" data-npc="1" style="top:38%;left:20%;">
+          <div class="marker-icon">🕯️</div>
+          <div class="marker-label">막달라 마리아</div>
+          <div class="marker-ping"></div>
+        </div>
+        <div class="npc-marker" id="npc-2" data-npc="2" style="top:62%;left:75%;">
+          <div class="marker-icon">🐟</div>
+          <div class="marker-label">요한<br/><small>제자</small></div>
+          <div class="marker-ping"></div>
+        </div>
+        <div class="npc-marker" id="npc-3" data-npc="3" style="top:42%;left:68%;">
+          <div class="marker-icon">📜</div>
+          <div class="marker-label">엘리에제르<br/><small>바리새인</small></div>
+          <div class="marker-ping"></div>
+        </div>
+        <div class="npc-marker" id="npc-4" data-npc="4" style="top:72%;left:28%;">
+          <div class="marker-icon">🤲</div>
+          <div class="marker-label">미리암<br/><small>혈루증 여인</small></div>
+          <div class="marker-ping"></div>
+        </div>
+      </div>
+      <div class="map-footer">
+        <div class="clue-preview" id="cluePreview">
+          <span class="clue-empty">수사노트가 비어있습니다…</span>
+        </div>
+        <button class="btn-secondary hidden" id="btnFinish">수사노트 확인하기 ›</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ SCENE: INTERROGATION ═══════════════════ -->
+    <div id="scene-interrogation" class="scene">
+      <div class="interro-bg" id="interroBg"></div>
+      <div class="interro-content">
+        <button class="btn-back" id="btnBack">← 지도로</button>
+
+        <div class="npc-portrait-area">
+          <div class="npc-portrait" id="npcPortrait">
+            <div class="npc-avatar" id="npcAvatar"></div>
+            <div class="portrait-glow" id="portraitGlow"></div>
+          </div>
+          <div class="npc-info">
+            <h3 id="npcName">—</h3>
+            <p id="npcRole">—</p>
+          </div>
+        </div>
+
+        <!-- Trust Meter -->
+        <div class="trust-container">
+          <span class="trust-label">신뢰도</span>
+          <div class="trust-bar-bg">
+            <div class="trust-bar" id="trustBar"></div>
+          </div>
+          <span class="trust-value" id="trustValue">100%</span>
+        </div>
+
+        <!-- Dialogue -->
+        <div class="dialogue-box" id="dialogueBox">
+          <p id="dialogueText" class="typewriter"></p>
+        </div>
+
+        <!-- Choices -->
+        <div class="choices-container" id="choicesContainer">
+          <!-- dynamically rendered -->
+        </div>
+
+        <!-- Clue reveal -->
+        <div class="clue-reveal hidden" id="clueReveal">
+          <div class="clue-card">
+            <div class="clue-card-inner">
+              <span class="clue-icon">🔍</span>
+              <p class="clue-card-label">단서 획득!</p>
+              <p class="clue-card-text" id="clueCardText"></p>
+            </div>
+          </div>
+          <button class="btn-primary" id="btnNextNpc">계속 수사하기 ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ SCENE: NOTEBOOK ═══════════════════ -->
+    <div id="scene-notebook" class="scene">
+      <div class="notebook-bg">
+        <div class="dust-particles" id="dustParticles"></div>
+      </div>
+      <div class="notebook-container">
+        <div class="notebook-cover">
+          <div class="notebook-label">수사 노트</div>
+          <div class="notebook-subtitle">INVESTIGATOR'S NOTEBOOK</div>
+        </div>
+        <div class="notebook-page">
+          <div class="page-header">
+            <p>사건명: <strong>예루살렘 미스터리</strong></p>
+            <p class="page-date">수사관 기록</p>
+          </div>
+          <div class="clues-list" id="cluesList">
+            <!-- dynamically rendered -->
+          </div>
+          <div class="notebook-stamp" id="notebookStamp">
+            <div class="stamp-inner">수사<br/>완료</div>
+          </div>
+        </div>
+      </div>
+      <div class="notebook-btn-group">
+        <button class="btn-reveal" id="btnRevealPoster">🔍 수사 결과 확인하기</button>
+        <button class="btn-primary" id="btnToEnding">결론 확인하기 ›</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ POSTER MODAL ═══════════════════ -->
+    <div id="posterModal" class="poster-modal hidden">
+      <div class="poster-backdrop" id="posterBackdrop"></div>
+      <div class="poster-content">
+        <img src="assets/event_poster.png" alt="예루살렘 미스터리 행사 안내" class="poster-img" id="posterImg" />
+        <div class="poster-overlay-text">
+          <div class="poster-stamp-title">예루살렘 시신도난 사건!</div>
+          <div class="poster-date-info">
+            <p class="poster-date">4월 4일(토) 오후 1시</p>
+            <p class="poster-venue">서울-안디옥교회에서 이 미스터리를 풀어보세요!</p>
+          </div>
+        </div>
+        <div class="poster-actions">
+          <button class="btn-share poster-share" id="btnPosterShare">공유하기 ✦</button>
+          <button class="btn-replay poster-close" id="btnPosterClose">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ SCENE: ENDING ═══════════════════ -->
+    <div id="scene-ending" class="scene">
+      <!-- Phase 1: Tomb -->
+      <div class="ending-tomb" id="endingTomb">
+        <div class="tomb-bg"></div>
+        <div class="tomb-door" id="tombDoor">
+          <div class="tomb-crack" id="tombCrack"></div>
+          <div class="crack-glow" id="crackGlow"></div>
+        </div>
+        <p class="tomb-text" id="tombText">"모든 단서는 이 문 앞에서 막혔습니다."</p>
+      </div>
+
+      <!-- Phase 2: White Explosion -->
+      <div class="light-explosion hidden" id="lightExplosion">
+        <div class="light-core"></div>
+        <div class="light-rays"></div>
+        <div class="light-particles" id="lightParticles"></div>
+      </div>
+
+      <!-- Phase 3: Stars + message -->
+      <div class="ending-stars hidden" id="endingStars">
+        <div class="star-field" id="starField2"></div>
+        <div class="ending-message" id="endingMessage">
+          <p class="msg-line1">진짜 답은</p>
+          <p class="msg-line2">수사노트 안에 없습니다.</p>
+          <p class="msg-line3">그 답은, 직접 가야만 알 수 있습니다.</p>
+          <div class="date-reveal" id="dateReveal">
+            <div class="date-line"></div>
+            <p class="date-text">4월 4일</p>
+            <p class="event-name">예루살렘 미스터리</p>
+            <p class="event-sub">현장에서 만나요</p>
+            <div class="date-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 4: CTA -->
+      <div class="cta-card hidden" id="ctaCard">
+        <div class="cta-inner">
+          <div class="cta-icon">🔦</div>
+          <h3 class="cta-title">예루살렘 미스터리</h3>
+          <p class="cta-date">📅 2025년 4월 4일 (토)</p>
+          <p class="cta-desc">진짜 수사는 현장에서 시작됩니다</p>
+          <div class="cta-buttons">
+            <button class="btn-share" id="btnShare">공유하기 ✦</button>
+            <button class="btn-replay" id="btnReplay">다시 수사하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /game-wrapper -->
+
+  <script src="game.js"></script>
+</body>
+</html>

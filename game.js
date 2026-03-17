@@ -330,12 +330,13 @@ document.getElementById('posterBackdrop').addEventListener('click', () => {
 });
 
 document.getElementById('btnPosterShare').addEventListener('click', async () => {
+  const shareTitle = '[초대장] 예루살렘 미스테리 : 시신이 사라졌다!';
   const shareText = `🔍 예루살렘 시신도난 사건!\n\n4월 4일(토) 오후 1시\n서울-안디옥교회에서 이 미스터리를 풀어보세요!\n\n#예루살렘미스터리 #탈출방`;
   if (navigator.share) {
-    try { await navigator.share({ title: '예루살렘 미스터리', text: shareText }); } catch { }
+    try { await navigator.share({ title: shareTitle, text: shareText }); } catch { }
   } else {
     try {
-      await navigator.clipboard.writeText(shareText);
+      await navigator.clipboard.writeText(`${shareTitle}\n\n${shareText}`);
       alert('공유 텍스트가 복사되었습니다!');
     } catch { alert(shareText); }
   }

@@ -123,82 +123,72 @@ html, body {
   position: absolute; inset: 0;
 }
 
-.intro-content {
+.intro-hand-bg {
+  position: absolute; inset: 0;
+  background: url('assets/hand_scroll.png') center/cover no-repeat;
+  z-index: 5;
+  animation: handReveal 1.8s cubic-bezier(0.2, 0, 0.4, 1) both;
+}
+
+.intro-hand-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
+  pointer-events: none;
+}
+
+@keyframes handReveal {
+  from { transform: translateY(60px) scale(1.1); opacity: 0; filter: blur(4px); }
+  to   { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+}
+
+.intro-content-overlay {
   position: relative; z-index: 10;
   display: flex; flex-direction: column;
-  align-items: center; gap: 30px;
+  align-items: center; justify-content: center;
+  height: 100%; width: 100%;
   padding: 20px;
 }
 
-/* Scroll */
-.scroll-container {
-  width: 300px;
-  animation: scrollDropIn 1s ease both;
+.intro-text {
+  text-align: center;
+  margin-bottom: 20px;
+  background: radial-gradient(ellipse at center, rgba(255, 250, 230, 0.85) 0%, rgba(255, 245, 220, 0.6) 50%, transparent 80%);
+  padding: 50px 20px;
+  border-radius: 40%;
+  animation: haloReveal 1.5s 1.5s ease both;
 }
 
-.scroll-top-roll, .scroll-bottom-roll {
-  height: 28px;
-  background: linear-gradient(135deg, #8b6914, var(--parchment-dark), #8b6914);
-  border-radius: 6px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.5);
-  position: relative;
-  z-index: 2;
-}
-.scroll-top-roll::before, .scroll-top-roll::after,
-.scroll-bottom-roll::before, .scroll-bottom-roll::after {
-  content: '';
-  position: absolute;
-  top: 50%; transform: translateY(-50%);
-  width: 36px; height: 36px;
-  background: radial-gradient(circle, #a07830, #6b4a10);
-  border-radius: 50%;
-  border: 2px solid #5a3a08;
-}
-.scroll-top-roll::before, .scroll-bottom-roll::before { left: -10px; }
-.scroll-top-roll::after, .scroll-bottom-roll::after  { right: -10px; }
-
-.scroll-body {
-  background: linear-gradient(160deg, #f5e8c8, var(--parchment), #e0c898);
-  padding: 24px 28px;
-  position: relative;
-  box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
-  min-height: 200px;
-}
-
-.scroll-seal {
-  position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
-  width: 40px; height: 40px;
-  background: radial-gradient(circle, #c0392b, #8b0000);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: #ffd700; font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-  animation: sealCrack 0.5s 1s ease both;
-  z-index: 3;
+@keyframes haloReveal {
+  from { opacity: 0; transform: scale(0.95); filter: blur(10px); }
+  to   { opacity: 1; transform: scale(1); filter: blur(0); }
 }
 
 .scroll-label {
   font-family: 'Noto Serif KR', serif;
-  font-size: 0.75rem; font-weight: 700;
-  text-align: center;
-  color: var(--parchment-deep);
+  font-size: 1.35rem; font-weight: 900;
+  color: #8b0000;
   letter-spacing: 0.3em;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   text-transform: uppercase;
+  animation: fadeUp 0.8s 2s both;
+  text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 0 15px rgba(255,255,255,1);
 }
 
 .scroll-text p {
-  font-size: 1rem;
+  font-size: 1.15rem;
   line-height: 1.8;
-  color: var(--ink);
+  color: #0d0805;
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   opacity: 0;
+  font-weight: 900;
+  text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 0 10px rgba(255,255,255,0.8);
 }
-.scroll-text .t1 { animation: fadeUp 0.6s 1.2s both; }
-.scroll-text .t2 { animation: fadeUp 0.6s 1.7s both; font-size: 1.15rem; font-weight: 700; }
-.scroll-text .t3 { animation: fadeUp 0.6s 2.2s both; color: var(--ink-light); font-size: 0.9rem; }
-.scroll-text .t4 { animation: fadeUp 0.6s 2.7s both; font-weight: 700; color: var(--purple); }
+.scroll-text .t1 { animation: fadeUp 0.8s 2.2s both; }
+.scroll-text .t2 { animation: fadeUp 0.8s 2.8s both; font-size: 1.3rem; }
+.scroll-text .t3 { animation: fadeUp 0.8s 3.4s both; color: #2a1005; font-size: 1.05rem; }
+.scroll-text .t4 { animation: fadeUp 0.8s 4.0s both; font-weight: 900; color: #8b0000; }
 
 /* ════════════════════════════
    MAP SCENE
@@ -236,9 +226,10 @@ html, body {
 .map-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 30% 40%, rgba(139,100,40,0.2) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 60%, rgba(100,70,30,0.15) 0%, transparent 50%),
-    linear-gradient(135deg, #2a1f0a 0%, #1a1005 50%, #251808 100%);
+    radial-gradient(ellipse at 30% 40%, rgba(139,100,40,0.6) 0%, transparent 80%),
+    radial-gradient(ellipse at 70% 60%, rgba(100,70,30,0.5) 0%, transparent 80%),
+    url('assets/jerusalem_map_bg.png') center/cover no-repeat;
+  opacity: 0.6;
 }
 .map-bg::before {
   content: '';
@@ -247,8 +238,8 @@ html, body {
     45deg,
     transparent,
     transparent 40px,
-    rgba(200,160,80,0.03) 40px,
-    rgba(200,160,80,0.03) 41px
+    rgba(200,160,80,0.05) 40px,
+    rgba(200,160,80,0.05) 41px
   );
 }
 
@@ -263,7 +254,8 @@ html, body {
 }
 .npc-marker:active { transform: translate(-50%,-50%) scale(0.92); }
 .npc-marker.used {
-  opacity: 0.4;
+  opacity: 0.3;
+  filter: grayscale(100%) brightness(50%);
   pointer-events: none;
 }
 .npc-marker.selected .marker-icon {
@@ -273,15 +265,21 @@ html, body {
 }
 
 .marker-icon {
-  width: 54px; height: 54px;
+  width: 80px; height: 80px;
   background: linear-gradient(135deg, rgba(212,168,67,0.2), rgba(107,66,16,0.6));
   border: 2px solid var(--gold);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   box-shadow: 0 3px 16px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.1);
   backdrop-filter: blur(4px);
   transition: all 0.3s;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
 }
 .marker-label {
   background: rgba(0,0,0,0.7);
@@ -297,13 +295,28 @@ html, body {
 
 .marker-ping {
   position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 54px; height: 54px;
+  width: 80px; height: 80px;
   border: 2px solid var(--gold);
   border-radius: 50%;
   animation: ping 2s ease-in-out infinite;
   pointer-events: none;
 }
 .npc-marker.used .marker-ping { display: none; }
+
+/* Player Marker */
+.player-marker {
+  position: absolute;
+  width: 60px; height: 60px;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  transition: top 1s ease-in-out, left 1s ease-in-out;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.9)) drop-shadow(0 0 15px rgba(255, 230, 150, 0.4));
+}
+.player-marker::after {
+  content: '🚶‍♂️';
+}
 
 /* Map footer */
 .map-footer {

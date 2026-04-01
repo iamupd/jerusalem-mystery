@@ -219,7 +219,7 @@ function resizeCanvas() {
   const cont = document.getElementById('game-container');
   canvas.width = COLS * TILE; canvas.height = ROWS * TILE;
   canvas.style.width = cont.clientWidth + 'px';
-  canvas.style.height = (cont.clientHeight - 36) + 'px';
+  canvas.style.height = (cont.clientHeight - 160) + 'px';
 }
 
 function generateMap(roomId) {

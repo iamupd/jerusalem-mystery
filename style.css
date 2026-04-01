@@ -546,9 +546,8 @@ html, body {
   text-align: center;
   font-family: var(--pixel-font);
   font-size: 0.7rem;
-  color: var(--gold);
+  color: #ff3333 !important;
   padding-top: 8px;
-  animation: blink 1s ease-in-out infinite;
   cursor: pointer;
 }
 

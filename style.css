@@ -197,7 +197,7 @@ html, body {
 
 #gameCanvas {
   display: block;
-  max-height: 320px;
+  max-height: 400px;
   width: auto;
   max-width: 100%;
   aspect-ratio: 4 / 3;
@@ -208,7 +208,7 @@ html, body {
 /* ── Controls Bar ── */
 .controls-bar {
   flex-shrink: 0;
-  height: 155px;
+  height: 165px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -257,12 +257,12 @@ html, body {
 /* ── D-Pad ── */
 .dpad-container {
   position: relative;
-  width: 130px; height: 130px;
+  width: 150px; height: 150px;
   z-index: 30;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 3px;
+  gap: 4px;
   flex-shrink: 0;
 }
 
@@ -294,7 +294,7 @@ html, body {
 /* ── Action Button ── */
 .action-btn {
   position: relative;
-  width: 90px; height: 90px;
+  width: 105px; height: 105px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--gold), #b8860b);
   border: 3px solid var(--gold-light);
@@ -749,16 +749,18 @@ html, body {
 
 /* ── Responsive ── */
 @media (min-width: 641px) {
-  .controls-bar { height: 170px; padding: 12px 30px; }
-  .dpad-container { width: 150px; height: 150px; }
-  .dpad-btn { font-size: 1.2rem; }
-  .action-btn { width: 105px; height: 105px; font-size: 0.85rem; }
+  .controls-bar { height: 180px; padding: 12px 30px; }
+  .dpad-container { width: 165px; height: 165px; }
+  .dpad-btn { font-size: 1.3rem; }
+  .action-btn { width: 120px; height: 120px; font-size: 0.9rem; }
+  #gameCanvas { max-height: 460px; }
 }
 
 @media (max-height: 600px) {
-  .controls-bar { height: 120px; padding: 6px 14px; }
-  .dpad-container { width: 100px; height: 100px; }
-  .dpad-btn { font-size: 0.85rem; }
-  .action-btn { width: 70px; height: 70px; font-size: 0.65rem; }
+  .controls-bar { height: 130px; padding: 6px 14px; }
+  .dpad-container { width: 115px; height: 115px; }
+  .dpad-btn { font-size: 0.9rem; }
+  .action-btn { width: 80px; height: 80px; font-size: 0.65rem; }
+  #gameCanvas { max-height: 280px; }
   .hud-top { padding: 4px 8px; }
 }

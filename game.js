@@ -189,11 +189,11 @@ const ROOMS = {
   },
   room6: {name:'⚔️ 병사의 방', bg:'#566573', floor:'#808b96', wall:'#1c2833',
     items:[
-      {x:5,y:3,emoji:'⛓️',label:'수갑',id:'cuff',msg:'수갑 (3)'},
-      {x:9,y:3,emoji:'🪢',label:'채찍',id:'whip',msg:'채찍 (7)'},
-      {x:13,y:3,emoji:'🔨',label:'망치',id:'ham',msg:'망치 (8)'},
+      {x:16,y:4,emoji:'🪢',label:'채찍',id:'whip',msg:'채찍 (7)'},
+      {x:3,y:8,emoji:'🔨',label:'망치',id:'ham',msg:'망치 (8)'},
       {x:13,y:7,emoji:'🗄️',label:'사물함',id:'lock',msg:'비밀번호가 걸려있어. 숫자가 뭐지..?'},
       {x:10,y:10,emoji:'🪶',label:'깃털',id:'feath',msg:'천사의 깃털!'},
+      {x:7,y:12,emoji:'⛓️',label:'수갑',id:'cuff',msg:'수갑 (3)'},
     ],
     npcs:[{x:15,y:10,name:'병사',emoji:'💂',npcIndex:6,colors:{hair:'#f1c40f',skin:'#f8c471',shirt:'#c0392b',pants:'#34495e',shoes:'#17202a'},
       dialogue:[{text:'"암호 천사! 좋다, 통과해라."', choices:[

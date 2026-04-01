@@ -560,6 +560,20 @@ function init() {
   btnStart.onclick = startGame;
   btnStart.addEventListener('touchend', (e) => { e.preventDefault(); startGame(); });
   document.getElementById('btnReplay').onclick = () => location.reload();
+
+  document.getElementById('btnShare').onclick = async () => {
+    const shareData = {
+      title: '예루살렘 도난사건 – 빈 무덤의 진실',
+      text: '2000년 전 예루살렘, 무덤에서 시신이 사라졌다! 이 미스터리 수사 게임을 플레이해봐 👉',
+      url: 'https://iamupd.github.io/jerusalem-mystery'
+    };
+    if (navigator.share) {
+      try { await navigator.share(shareData); } catch(e) { /* 취소 */ }
+    } else {
+      await navigator.clipboard.writeText(shareData.url);
+      alert('링크가 복사되었습니다!\n카카오톡에 붙여넣기 해서 공유하세요 😊');
+    }
+  };
   gameLoop();
 }
 

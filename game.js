@@ -555,7 +555,10 @@ function setupInput() {
 
 function init() {
   initMaps(); resizeCanvas(); setupInput(); window.addEventListener('resize', resizeCanvas);
-  document.getElementById('btnStart').onclick = () => { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById('screen-game').classList.add('active'); state.screen='game'; state.room='overworld'; updateHUD(); resizeCanvas(); };
+  const startGame = () => { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById('screen-game').classList.add('active'); state.screen='game'; state.room='overworld'; updateHUD(); resizeCanvas(); };
+  const btnStart = document.getElementById('btnStart');
+  btnStart.onclick = startGame;
+  btnStart.addEventListener('touchend', (e) => { e.preventDefault(); startGame(); });
   document.getElementById('btnReplay').onclick = () => location.reload();
   gameLoop();
 }

@@ -161,9 +161,10 @@ html, body {
   background: linear-gradient(135deg, var(--gold), #b8860b);
   color: var(--ink);
   border: none; border-radius: 30px;
-  padding: 14px 60px;
+  padding: 14px 36px;
   font-family: var(--title-font);
   font-size: 1.05rem; font-weight: 700;
+  white-space: nowrap;
   cursor: pointer;
   box-shadow: 0 4px 20px var(--gold-glow);
   transition: transform 0.15s, box-shadow 0.15s;

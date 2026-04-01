@@ -132,7 +132,7 @@ const ROOMS = {
       {x:5,y:3,emoji:'👶',label:'모형',id:'baby',msg:'구유 모형 뒷면에 [예수]라고 적혀있다!'},
       {x:10,y:3,emoji:'📜',label:'조각',id:'scroll1',msg:'"아들을 낳으리니 이름을 예수라 하라"'},
       {x:15,y:5,emoji:'⭐',label:'장식',id:'star',msg:'"하나님의 아들"이라는 글자가 빛난다.'},
-      {x:8,y:8,emoji:'🔒',label:'상자',id:'lock1',msg:'비밀번호 0508. "우리를 위해 죽으심으로..."'},
+      {x:8,y:8,emoji:'🔒',label:'상자',id:'lock1',msg:'자물쇠가 걸려있다. 숫자를...!'},
       {x:14,y:10,emoji:'📰',label:'기사',id:'news1',msg:'"나사렛 예수, 십자가 처형"'},
     ],
     npcs:[{x:3,y:10,name:'요한',emoji:'🧔',npcIndex:0,colors:{hair:'#4a3520',skin:'#ffdbac',shirt:'#1a508b',pants:'#1c1c1c',shoes:'#4a2e15'},

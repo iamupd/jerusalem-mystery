@@ -3,187 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>[모바일게임초대장] 예루살렘 도난사건 : 시신이 사라졌다!</title>
-  <meta property="og:url" content="https://iamupd.github.io/jerusalem-mystery" />
-  <meta property="og:title" content="[모바일게임초대장] 예루살렘 도난사건 : 시신이 사라졌다!" />
-  <meta property="og:description" content="예루살렘의 탐정이 되어 NPC들을 심문하고 단서를 모으세요. 4월 4일 현장에서 진짜 답을 확인하세요." />
-  <meta property="og:image" content="assets/event_poster.png" />
-  <meta name="description" content="예루살렘의 탐정이 되어 NPC들을 심문하고 단서를 모으세요. 4월 4일 현장에서 진짜 답을 확인하세요." />
+  <title>예루살렘 도난사건 – 빈 무덤의 진실 | 2D RPG</title>
+  <meta property="og:title" content="예루살렘 도난사건 – 빈 무덤의 진실" />
+  <meta property="og:description" content="6개의 방을 탐험하며 단서를 모으고 진실을 밝혀라! 2D RPG 미스터리 수사 게임" />
+  <meta name="description" content="예루살렘의 탐정이 되어 6개의 방을 탐험하고 NPC들을 만나 단서를 모으세요." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@400;600;700;900&family=Press+Start+2P&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="game-wrapper">
-
-    <!-- ═══════════════════ SCENE: INTRO ═══════════════════ -->
-    <div id="scene-intro" class="scene active">
-      <div class="intro-bg">
-        <div class="star-field" id="starField1"></div>
-        <div class="city-silhouette"></div>
-      </div>
-      <div class="intro-hand-bg"></div>
-      
-      <div class="intro-content-overlay">
-        <div class="intro-text" id="introScroll">
-          <p class="scroll-label">수사 의뢰서</p>
-          <div class="scroll-text" id="scrollText">
-            <p class="t1">3일 전,</p>
-            <p class="t2">예루살렘에서<br />사건이 일어났다.</p>
-            <p class="t3">목격자들은 말이 없고,<br />진실은 어둠 속에 묻혀있다.</p>
-            <p class="t4">당신만이 밝혀낼 수 있다.</p>
-          </div>
+  <div id="game-container">
+    <!-- ═══ TITLE SCREEN ═══ -->
+    <div id="screen-title" class="screen active">
+      <div class="title-stars" id="titleStars"></div>
+      <div class="title-content">
+        <div class="title-badge">미스터리 수사 RPG</div>
+        <h1 class="title-main">
+          <span class="title-line1">예루살렘</span>
+          <span class="title-line2">도난사건</span>
+        </h1>
+        <p class="title-sub">빈 무덤의 진실</p>
+        <div class="title-scroll-text">
+          <p>토요일 아침, 예수의 시신이 사라졌다.</p>
+          <p>총독은 시신 도난 사건으로 조사를 명령했다.</p>
+          <p>당신은 이 사건의 조사팀이 되어</p>
+          <p>각 방에서 단서를 모아 진실을 밝혀야 한다.</p>
         </div>
-        <button class="btn-primary pulse" id="btnStart" style="margin-top:20px; animation: fadeUp 0.8s 5s both;">수사 시작하기 ›</button>
-      </div>
-    </div>
-
-    <!-- ═══════════════════ SCENE: MAP ═══════════════════ -->
-    <div id="scene-map" class="scene">
-      <div class="map-header">
-        <h2>예루살렘 지도</h2>
-        <p class="map-subtitle">목격자를 선택해 심문하세요 <span id="npcCounter">0/3명 선택됨</span></p>
-      </div>
-      <div class="map-container">
-        <div class="map-bg"></div>
-        <!-- Player Marker -->
-        <div class="player-marker" id="playerMarker" style="top: 50%; left: 50%;"></div>
-        <!-- NPC location markers -->
-        <div class="npc-marker" id="npc-0" data-npc="0" style="top:15%;left:50%;">
-          <div class="marker-icon">⚔️</div>
-          <div class="marker-label">무덤을 지키던 병사<br/><small>빈 무덤</small></div>
-          <div class="marker-ping"></div>
-        </div>
-        <div class="npc-marker" id="npc-1" data-npc="1" style="top:32%;left:20%;">
-          <div class="marker-icon">🕯️</div>
-          <div class="marker-label">막달라 마리아<br/><small>마리아의 집</small></div>
-          <div class="marker-ping"></div>
-        </div>
-        <div class="npc-marker" id="npc-2" data-npc="2" style="top:75%;left:80%;">
-          <div class="marker-icon">🐟</div>
-          <div class="marker-label">요한<br/><small>요한의 집</small></div>
-          <div class="marker-ping"></div>
-        </div>
-        <div class="npc-marker" id="npc-3" data-npc="3" style="top:75%;left:20%;">
-          <div class="marker-icon">🤲</div>
-          <div class="marker-label">혈루증 여인<br/><small>사람들이 모인 거리</small></div>
-          <div class="marker-ping"></div>
-        </div>
-        <div class="npc-marker" id="npc-4" data-npc="4" style="top:32%;left:80%;">
-          <div class="marker-icon">⚰️</div>
-          <div class="marker-label">나사로<br/><small>나사로의 집</small></div>
-          <div class="marker-ping"></div>
-        </div>
-      </div>
-      <div class="map-footer" style="justify-content: center; padding: 20px;">
-        <button class="btn-primary hidden" id="btnFinish" style="width: 100%;">본격적인 수사 시작하기 ›</button>
+        <button class="btn-start" id="btnStart">
+          <span class="btn-icon">⚔️</span>
+          수사 시작하기
+          <span class="btn-arrow">▶</span>
+        </button>
       </div>
     </div>
 
-    <!-- ═══════════════════ SCENE: INTERROGATION ═══════════════════ -->
-    <div id="scene-interrogation" class="scene">
-      <div class="interro-bg" id="interroBg"></div>
-      <div class="interro-content">
-        <button class="btn-back" id="btnBack">← 지도로</button>
+    <!-- ═══ RPG WORLD (CANVAS) ═══ -->
+    <div id="screen-game" class="screen">
+      <!-- Top HUD -->
+      <div class="hud-top">
+        <div class="hud-location" id="hudLocation">🗺️ 예루살렘 거리</div>
+        <div class="hud-coins" id="hudCoins">🪙 5</div>
+        <div class="hud-clues" id="hudClues">📜 0/6</div>
+      </div>
 
-        <div class="npc-portrait-area">
-          <div class="npc-portrait" id="npcPortrait">
-            <div class="npc-avatar" id="npcAvatar"></div>
-            <div class="portrait-glow" id="portraitGlow"></div>
+      <!-- Canvas -->
+      <canvas id="gameCanvas"></canvas>
+
+      <!-- D-pad controls -->
+      <div class="dpad-container" id="dpadContainer">
+        <button class="dpad-btn dpad-up" id="dpadUp">▲</button>
+        <button class="dpad-btn dpad-left" id="dpadLeft">◀</button>
+        <button class="dpad-btn dpad-center" id="dpadCenter">●</button>
+        <button class="dpad-btn dpad-right" id="dpadRight">▶</button>
+        <button class="dpad-btn dpad-down" id="dpadDown">▼</button>
+      </div>
+
+      <!-- Action button -->
+      <button class="action-btn" id="actionBtn">🔍 조사</button>
+
+      <!-- Minimap -->
+      <div class="minimap" id="minimap">
+        <canvas id="minimapCanvas" width="120" height="90"></canvas>
+      </div>
+
+      <!-- Investigation Log Panel (right side) -->
+      <div class="invest-panel" id="investPanel">
+        <div class="invest-header" id="investToggle">📋 수사기록</div>
+        <div class="invest-body" id="investBody">
+          <div class="invest-section">
+            <div class="invest-section-title">🔎 증거 기록</div>
+            <ul class="invest-list" id="clueList">
+              <li class="invest-empty">아직 발견된 증거가 없습니다</li>
+            </ul>
           </div>
-          <div class="npc-info">
-            <h3 id="npcName">—</h3>
-            <p id="npcRole">—</p>
+          <div class="invest-section">
+            <div class="invest-section-title">🎒 획득 아이템</div>
+            <ul class="invest-list" id="itemList">
+              <li class="invest-empty">아직 획득한 아이템이 없습니다</li>
+            </ul>
           </div>
-        </div>
-
-
-
-        <!-- Dialogue -->
-        <div class="dialogue-box" id="dialogueBox">
-          <p id="dialogueText" class="typewriter"></p>
-        </div>
-
-        <!-- Choices -->
-        <div class="choices-container" id="choicesContainer">
-          <!-- dynamically rendered -->
         </div>
       </div>
-    </div>
 
-
-    <!-- ═══════════════════ POSTER MODAL ═══════════════════ -->
-    <div id="posterModal" class="poster-modal hidden">
-      <div class="poster-backdrop" id="posterBackdrop"></div>
-      <div class="poster-content">
-        <img src="assets/event_poster.png" alt="예루살렘 미스터리 행사 안내" class="poster-img" id="posterImg" />
-        <div class="poster-overlay-text">
-          <div class="poster-stamp-title">예루살렘 시신도난 사건!</div>
-          <div class="poster-date-info">
-            <p class="poster-date">4월 4일(토) 오후 1시</p>
-            <p class="poster-venue">서울-안디옥교회에서 이 미스터리를 풀어보세요!</p>
-          </div>
+      <!-- Dialogue Overlay -->
+      <div class="dialogue-overlay hidden" id="dialogueOverlay">
+        <div class="dialogue-box-rpg" id="dialogueBoxRpg">
+          <div class="dialogue-speaker" id="dialogueSpeaker">???</div>
+          <div class="dialogue-text-rpg" id="dialogueTextRpg"></div>
+          <div class="dialogue-choices" id="dialogueChoices"></div>
+          <div class="dialogue-continue hidden" id="dialogueContinue">▼ 터치하여 계속</div>
         </div>
-        <div class="poster-actions">
-          <button class="btn-share poster-share" id="btnPosterShare">공유하기 ✦</button>
-          <button class="btn-replay poster-close" id="btnPosterClose">닫기</button>
+      </div>
+
+      <!-- Room Transition -->
+      <div class="room-transition hidden" id="roomTransition">
+        <div class="transition-text" id="transitionText"></div>
+      </div>
+
+      <!-- Investigation Note -->
+      <div class="note-overlay hidden" id="noteOverlay">
+        <div class="note-panel">
+          <h3 class="note-title">📋 수사 노트</h3>
+          <div class="note-content" id="noteContent"></div>
+          <button class="note-close" id="noteClose">닫기</button>
         </div>
       </div>
     </div>
 
-    <!-- ═══════════════════ SCENE: ENDING ═══════════════════ -->
-    <div id="scene-ending" class="scene">
-      <!-- Phase 1: Tomb -->
-      <div class="ending-tomb" id="endingTomb">
-        <div class="tomb-bg"></div>
-        <div class="tomb-door" id="tombDoor">
-          <div class="tomb-crack" id="tombCrack"></div>
-          <div class="crack-glow" id="crackGlow"></div>
+    <!-- ═══ ENDING SCREEN ═══ -->
+    <div id="screen-ending" class="screen">
+      <div class="ending-content">
+        <div class="ending-badge">수사 완료</div>
+        <h2 class="ending-title">진실이 밝혀졌다!</h2>
+        <div class="ending-results" id="endingResults"></div>
+        <div class="ending-message">
+          <p>예수님은 죽었다가 3일 만에 다시 살아나셨습니다.</p>
+          <p class="ending-highlight">부활하셨습니다!</p>
         </div>
-        <p class="tomb-text" id="tombText">"진짜 수사는 현장에서 시작됩니다."</p>
-      </div>
-
-      <!-- Phase 2: White Explosion -->
-      <div class="light-explosion hidden" id="lightExplosion">
-        <div class="light-core"></div>
-        <div class="light-rays"></div>
-        <div class="light-particles" id="lightParticles"></div>
-      </div>
-
-      <!-- Phase 3: Stars + message -->
-      <div class="ending-stars hidden" id="endingStars">
-        <div class="star-field" id="starField2"></div>
-        <div class="ending-message" id="endingMessage">
-          <p class="msg-line1">4월 4일(토)</p>
-          <p class="msg-line2">서울-안디옥교회에서</p>
-          <p class="msg-line3">이 사건의 수사가 시작됩니다!</p>
-          <div class="date-reveal" id="dateReveal">
-            <div class="date-line"></div>
-            <p class="date-text">4월 4일</p>
-            <p class="event-name">예루살렘 미스터리</p>
-            <p class="event-sub">현장에서 만나요</p>
-            <div class="date-line"></div>
-          </div>
+        <div class="ending-cta">
+          <p>📅 4월 4일(토) 오후 1시</p>
+          <p>서울-안디옥교회에서 이 미스터리를 풀어보세요!</p>
         </div>
-      </div>
-
-      <!-- Phase 4: CTA -->
-      <div class="cta-card hidden" id="ctaCard">
-        <div class="cta-inner">
-          <div class="cta-icon">🔦</div>
-          <h3 class="cta-title">예루살렘 미스터리</h3>
-          <p class="cta-date">📅 2025년 4월 4일 (토)</p>
-          <p class="cta-desc">수사에 합류하시겠습니까?</p>
-          <div class="cta-buttons" style="flex-direction: column;">
-            <button class="btn-reveal" id="btnRevealPoster" style="margin-bottom: 10px;">🔍 행사 포스터 확인하기</button>
-            <button class="btn-replay" id="btnReplay">처음으로</button>
-          </div>
-        </div>
+        <button class="btn-start" id="btnReplay">
+          <span class="btn-icon">🔄</span>
+          다시 플레이
+        </button>
       </div>
     </div>
-
-  </div><!-- /game-wrapper -->
+  </div>
 
   <script src="game.js"></script>
 </body>

@@ -185,11 +185,14 @@ html, body {
 
 #gameCanvas {
   display: block;
-  width: 100%;
-  flex: 1;
-  max-height: calc(100vh - 140px);
+  width: 92%;
+  max-width: 500px;
+  margin: 0 auto;
+  flex: 0 1 auto;
+  max-height: calc(100vh - 180px);
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+  border-radius: 8px;
 }
 
 /* ── HUD ── */

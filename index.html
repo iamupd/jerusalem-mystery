@@ -42,21 +42,26 @@
       <!-- Canvas -->
       <canvas id="gameCanvas"></canvas>
 
-      <!-- D-pad controls -->
-      <div class="dpad-container" id="dpadContainer">
-        <button class="dpad-btn dpad-up" id="dpadUp">▲</button>
-        <button class="dpad-btn dpad-left" id="dpadLeft">◀</button>
-        <button class="dpad-btn dpad-center" id="dpadCenter">●</button>
-        <button class="dpad-btn dpad-right" id="dpadRight">▶</button>
-        <button class="dpad-btn dpad-down" id="dpadDown">▼</button>
-      </div>
-
-      <!-- Action button -->
-      <button class="action-btn" id="actionBtn">🔍 조사</button>
-
       <!-- Minimap -->
       <div class="minimap" id="minimap">
-        <canvas id="minimapCanvas" width="120" height="90"></canvas>
+        <canvas id="minimapCanvas" width="100" height="75"></canvas>
+      </div>
+
+      <!-- Controls Bar -->
+      <div class="controls-bar">
+        <!-- D-pad controls -->
+        <div class="dpad-container" id="dpadContainer">
+          <button class="dpad-btn dpad-up" id="dpadUp">▲</button>
+          <button class="dpad-btn dpad-left" id="dpadLeft">◀</button>
+          <button class="dpad-btn dpad-center" id="dpadCenter">●</button>
+          <button class="dpad-btn dpad-right" id="dpadRight">▶</button>
+          <button class="dpad-btn dpad-down" id="dpadDown">▼</button>
+        </div>
+
+        <div class="controls-center"></div>
+
+        <!-- Action button -->
+        <button class="action-btn" id="actionBtn">🔍 조사</button>
       </div>
 
       <!-- Investigation Log Panel (right side) -->

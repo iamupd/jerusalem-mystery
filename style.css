@@ -187,8 +187,25 @@ html, body {
   display: block;
   width: 100%;
   flex: 1;
+  min-height: 0;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+}
+
+/* ── Controls Bar ── */
+.controls-bar {
+  flex-shrink: 0;
+  height: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: linear-gradient(180deg, #1a1a2e 0%, #0d0d1a 100%);
+  border-top: 2px solid rgba(212,168,67,0.35);
+}
+
+.controls-center {
+  flex: 1;
 }
 
 /* ── HUD ── */
@@ -226,15 +243,14 @@ html, body {
 
 /* ── D-Pad ── */
 .dpad-container {
-  position: fixed;
-  bottom: 12px;
-  left: 12px;
-  width: 135px; height: 135px;
+  position: relative;
+  width: 130px; height: 130px;
   z-index: 30;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 3px;
+  flex-shrink: 0;
 }
 
 .dpad-btn {
@@ -264,10 +280,8 @@ html, body {
 
 /* ── Action Button ── */
 .action-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 12px;
-  width: 85px; height: 85px;
+  position: relative;
+  width: 90px; height: 90px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--gold), #b8860b);
   border: 3px solid var(--gold-light);
@@ -280,6 +294,7 @@ html, body {
   box-shadow: 0 4px 20px var(--gold-glow);
   transition: transform 0.1s;
   -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
 }
 .action-btn:active {
   transform: scale(0.9);
@@ -295,9 +310,9 @@ html, body {
 
 /* ── Minimap ── */
 .minimap {
-  position: fixed;
-  top: 50px;
-  right: 8px;
+  position: absolute;
+  top: 44px;
+  right: 4px;
   z-index: 25;
   border: 2px solid rgba(212,168,67,0.5);
   border-radius: 6px;
@@ -313,11 +328,11 @@ html, body {
 
 /* ── Investigation Panel ── */
 .invest-panel {
-  position: fixed;
+  position: absolute;
   top: 44px;
   right: 0;
   width: 220px;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100% - 60px);
   z-index: 25;
   display: flex;
   flex-direction: column;
@@ -417,7 +432,7 @@ html, body {
   align-items: flex-end;
   justify-content: center;
   background: rgba(0,0,0,0.4);
-  padding-bottom: 170px;
+  padding-bottom: 20px;
 }
 
 .dialogue-box-rpg {
@@ -721,14 +736,16 @@ html, body {
 
 /* ── Responsive ── */
 @media (min-width: 641px) {
-  .dpad-container { width: 155px; height: 155px; bottom: 40px; left: 40px; }
+  .controls-bar { height: 170px; padding: 12px 30px; }
+  .dpad-container { width: 150px; height: 150px; }
   .dpad-btn { font-size: 1.2rem; }
-  .action-btn { width: 95px; height: 95px; bottom: 70px; right: 40px; }
+  .action-btn { width: 105px; height: 105px; font-size: 0.85rem; }
 }
 
 @media (max-height: 600px) {
-  .dpad-container { width: 110px; height: 110px; bottom: 8px; left: 8px; }
-  .dpad-btn { font-size: 0.9rem; }
-  .action-btn { width: 70px; height: 70px; bottom: 20px; right: 8px; }
+  .controls-bar { height: 120px; padding: 6px 14px; }
+  .dpad-container { width: 100px; height: 100px; }
+  .dpad-btn { font-size: 0.85rem; }
+  .action-btn { width: 70px; height: 70px; font-size: 0.65rem; }
   .hud-top { padding: 4px 8px; }
 }

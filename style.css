@@ -65,7 +65,8 @@ html, body {
 #screen-title {
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #5dade2 0%, #1e8449 100%);
+  background: url('assets/basic.png') center center / cover no-repeat;
+  background-color: #1a1a2e;
 }
 
 .title-stars {
@@ -89,8 +90,12 @@ html, body {
   position: relative; z-index: 5;
   display: flex; flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 30px 20px;
   text-align: center;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  margin: 20px;
 }
 
 .title-badge {

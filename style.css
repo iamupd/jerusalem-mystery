@@ -183,11 +183,24 @@ html, body {
   background: #34495e;
 }
 
-#gameCanvas {
-  display: block;
-  width: 100%;
+/* ── Canvas Area ── */
+.canvas-area {
   flex: 1;
   min-height: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a2e;
+  overflow: hidden;
+}
+
+#gameCanvas {
+  display: block;
+  max-height: 320px;
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 4 / 3;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
@@ -311,7 +324,7 @@ html, body {
 /* ── Minimap ── */
 .minimap {
   position: absolute;
-  top: 44px;
+  top: 4px;
   right: 4px;
   z-index: 25;
   border: 2px solid rgba(212,168,67,0.5);
@@ -329,10 +342,10 @@ html, body {
 /* ── Investigation Panel ── */
 .invest-panel {
   position: absolute;
-  top: 44px;
+  top: 0;
   right: 0;
-  width: 220px;
-  max-height: calc(100% - 60px);
+  width: 200px;
+  max-height: 100%;
   z-index: 25;
   display: flex;
   flex-direction: column;

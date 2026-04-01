@@ -185,14 +185,10 @@ html, body {
 
 #gameCanvas {
   display: block;
-  width: 92%;
-  max-width: 500px;
-  margin: 0 auto;
-  flex: 0 1 auto;
-  max-height: calc(100vh - 180px);
+  width: 100%;
+  flex: 1;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  border-radius: 8px;
 }
 
 /* ── HUD ── */
@@ -343,6 +339,7 @@ html, body {
 }
 
 .invest-body {
+  display: none;
   background: rgba(26, 37, 47, 0.95);
   border: 2px solid rgba(244, 208, 63, 0.4);
   border-right: none;

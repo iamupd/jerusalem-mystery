@@ -216,7 +216,10 @@ const mmCanvas = document.getElementById('minimapCanvas');
 const mmCtx = mmCanvas.getContext('2d');
 
 function resizeCanvas() {
+  const cont = document.getElementById('game-container');
   canvas.width = COLS * TILE; canvas.height = ROWS * TILE;
+  canvas.style.width = cont.clientWidth + 'px';
+  canvas.style.height = (cont.clientHeight - 36) + 'px';
 }
 
 function generateMap(roomId) {

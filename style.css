@@ -227,14 +227,14 @@ html, body {
 /* ── D-Pad ── */
 .dpad-container {
   position: fixed;
-  bottom: 16px;
-  left: 16px;
-  width: 100px; height: 100px;
+  bottom: 12px;
+  left: 12px;
+  width: 135px; height: 135px;
   z-index: 30;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 2px;
+  gap: 3px;
 }
 
 .dpad-btn {
@@ -245,7 +245,7 @@ html, body {
   border: 2px solid rgba(212,168,67,0.5);
   border-radius: 8px;
   color: var(--gold);
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.1s;
   -webkit-tap-highlight-color: transparent;
@@ -265,15 +265,15 @@ html, body {
 /* ── Action Button ── */
 .action-btn {
   position: fixed;
-  bottom: 40px;
-  right: 16px;
-  width: 65px; height: 65px;
+  bottom: 30px;
+  right: 12px;
+  width: 85px; height: 85px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--gold), #b8860b);
   border: 3px solid var(--gold-light);
   color: var(--ink);
   font-family: var(--pixel-font);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   cursor: pointer;
   z-index: 30;
@@ -721,14 +721,14 @@ html, body {
 
 /* ── Responsive ── */
 @media (min-width: 641px) {
-  .dpad-container { width: 130px; height: 130px; bottom: 40px; left: 40px; }
-  .dpad-btn { font-size: 1rem; }
-  .action-btn { width: 80px; height: 80px; bottom: 70px; right: 40px; }
+  .dpad-container { width: 155px; height: 155px; bottom: 40px; left: 40px; }
+  .dpad-btn { font-size: 1.2rem; }
+  .action-btn { width: 95px; height: 95px; bottom: 70px; right: 40px; }
 }
 
 @media (max-height: 600px) {
-  .dpad-container { width: 80px; height: 80px; bottom: 10px; left: 10px; }
-  .dpad-btn { font-size: 0.7rem; }
-  .action-btn { width: 55px; height: 55px; bottom: 30px; right: 10px; }
+  .dpad-container { width: 110px; height: 110px; bottom: 8px; left: 8px; }
+  .dpad-btn { font-size: 0.9rem; }
+  .action-btn { width: 70px; height: 70px; bottom: 20px; right: 8px; }
   .hud-top { padding: 4px 8px; }
 }

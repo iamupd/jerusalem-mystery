@@ -131,7 +131,7 @@ const ROOMS = {
     items:[
       {x:5,y:3,emoji:'👶',label:'모형',id:'baby',msg:'구유 모형 뒷면에 [예수]라고 적혀있다!'},
       {x:10,y:3,emoji:'📜',label:'조각',id:'scroll1',msg:'"아들을 낳으리니 이름을 예수라 하라"'},
-      {x:15,y:5,emoji:'⭐',label:'장식',id:'star',msg:'"하나님의 아들"이라는 글자가 빛난다.'},
+      {x:15,y:5,emoji:'⭐',label:'장식',id:'star',msg:'뭔가가 씌여져 있는 것 같은데?'},
       {x:8,y:8,emoji:'🔒',label:'상자',id:'lock1',msg:'자물쇠가 걸려있다. 숫자를...!'},
       {x:14,y:10,emoji:'📰',label:'기사',id:'news1',msg:'"나사렛 예수, 십자가 처형"'},
     ],
@@ -144,8 +144,8 @@ const ROOMS = {
     items:[
       {x:5,y:4,emoji:'📦',label:'상자',id:'box1',msg:'안에 퍼즐 조각들이 있다!'},
       {x:10,y:3,emoji:'🎒',label:'가방',id:'bag1',msg:'지시카드: "열쇠를 찾으라!"'},
-      {x:15,y:4,emoji:'👜',label:'가방',id:'bag2',msg:'가방 안에 살아있는 식물이 있다.'},
-      {x:8,y:8,emoji:'🪨',label:'돌',id:'stone',msg:'돌 틈에서 열쇠 발견! 🔑'},
+      {x:15,y:4,emoji:'👜',label:'가방',id:'bag2',msg:'가방을 열어야 해! 가방을..!'},
+      {x:8,y:8,emoji:'🪨',label:'돌',id:'stone',msg:'여기에 뭔가가 있나?'},
       {x:13,y:9,emoji:'🔔',label:'종',id:'bell',msg:'(뎅- 뎅-) 마리아가 다가온다...'},
     ],
     npcs:[{x:14,y:10,name:'막달라 마리아',emoji:'👩',npcIndex:1,colors:{hair:'#b03a2e',skin:'#f5cba7',shirt:'#512e5f',pants:'#e6b0aa',shoes:'#7b241c'},
@@ -167,7 +167,7 @@ const ROOMS = {
   room4: {name:'🐟 어부의 집', bg:'#34495e', floor:'#5d6d7e', wall:'#212f3c',
     items:[
       {x:5,y:3,emoji:'🪤',label:'그물',id:'net',msg:'어부의 흔적이 남아있다.'},
-      {x:12,y:3,emoji:'🧺',label:'광주리',id:'basket',msg:'그 안에 닭 인형이 있다!'},
+      {x:12,y:3,emoji:'🧺',label:'광주리',id:'basket',msg:'이건 오병이어 사건 때 썼던 광주리잖아..'},
       {x:8,y:6,emoji:'🐔',label:'닭',id:'chicken',msg:'꼬끼오! 닭이 울자 베드로가 놀란다.'},
       {x:15,y:8,emoji:'📓',label:'일기',id:'diary',msg:'"네가 세 번 나를 모른다 하리라..."'},
     ],
@@ -192,7 +192,7 @@ const ROOMS = {
       {x:5,y:3,emoji:'⛓️',label:'수갑',id:'cuff',msg:'수갑 (3)'},
       {x:9,y:3,emoji:'🪢',label:'채찍',id:'whip',msg:'채찍 (7)'},
       {x:13,y:3,emoji:'🔨',label:'망치',id:'ham',msg:'망치 (8)'},
-      {x:13,y:7,emoji:'🗄️',label:'사물함',id:'lock',msg:'비번: 378. 명령서를 발견했다.'},
+      {x:13,y:7,emoji:'🗄️',label:'사물함',id:'lock',msg:'비밀번호가 걸려있어. 숫자가 뭐지..?'},
       {x:10,y:10,emoji:'🪶',label:'깃털',id:'feath',msg:'천사의 깃털!'},
     ],
     npcs:[{x:15,y:10,name:'병사',emoji:'💂',npcIndex:6,colors:{hair:'#f1c40f',skin:'#f8c471',shirt:'#c0392b',pants:'#34495e',shoes:'#17202a'},
@@ -554,7 +554,6 @@ function setupInput() {
 }
 
 function init() {
-  document.getElementById('titleStars').innerHTML = Array(60).fill(0).map(()=>`<div class="star" style="width:${Math.random()*4}px;height:auto;aspect-ratio:1;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*2}s"></div>`).join('');
   initMaps(); resizeCanvas(); setupInput(); window.addEventListener('resize', resizeCanvas);
   document.getElementById('btnStart').onclick = () => { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById('screen-game').classList.add('active'); state.screen='game'; state.room='overworld'; updateHUD(); resizeCanvas(); };
   document.getElementById('btnReplay').onclick = () => location.reload();
